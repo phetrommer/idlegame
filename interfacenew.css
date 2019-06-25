@@ -1,0 +1,78 @@
+html,
+body,
+.grid-container {
+    height: 100%;
+    margin: 0;
+}
+
+.grid-container *:not(.grid-middle-circle):not(.grid-middle-left):not(.grid-middle-right) {
+    border: 5px solid black;
+    position: relative;
+    margin: 5px;
+}
+
+.grid-container *:after {
+    /* content: attr(class); */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "grid-left grid-middle-top grid-middle-top grid-right""grid-left grid-middle-bottom grid-middle-bottom grid-right""grid-left grid-middle-bottom grid-middle-bottom grid-right";
+    background: url(images/backgroundnew.jpg);
+}
+
+.grid-left {
+    grid-area: grid-left;
+}
+
+.grid-middle-bottom {
+    grid-area: grid-middle-bottom;
+
+}
+
+.grid-middle-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "grid-middle-left grid-middle-circle grid-middle-right""grid-middle-left grid-middle-circle grid-middle-right";
+    grid-area: grid-middle-top;
+    border-radius: 25px;
+    /* grid-gap: 0.5em; */
+}
+
+.grid-middle-circle {
+    grid-area: grid-middle-circle;
+    background: url(images/minimap.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    border-radius: 100%;
+    border: 5px solid black;
+    width: 100%;
+    height: 95%;
+    right: 5px;
+    top: 3px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid-middle-left {
+    grid-area: grid-middle-left;
+    border: 5px solid blue;
+}
+
+.grid-middle-right {
+    grid-area: grid-middle-right;
+    border: 5px solid red;
+
+}
+
+.grid-right {
+    grid-area: grid-right;
+}
