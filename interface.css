@@ -1,0 +1,239 @@
+body {
+  background-image:url(images/backgroundnew.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  /* cursor: url(images/pick.png) 0 110, pointer; */
+}
+
+#intro {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.main>div {
+  background: rgba(238, 238, 238, 0.7);
+  padding: 1em;
+}
+
+.main>div:nth-child(odd) {
+  background: rgba(221, 221, 221, 0.7);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 0.5em;
+  grid-template-areas: "grid-1 grid-1 grid-2 grid-3" "grid-1 grid-1 grid-4 grid-5" "grid-1 grid-1 grid-6 grid-7"
+}
+
+.grid-1 { grid-area: grid-1; }
+
+.grid-2 { grid-area: grid-2; }
+
+.grid-3 { grid-area: grid-3; }
+
+.grid-4 { grid-area: grid-4; }
+
+.grid-5 { grid-area: grid-5; }
+
+.grid-6 { grid-area: grid-6; }
+
+.grid-7 { grid-area: grid-7; }
+
+
+.nested {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+#images {
+  height: 50px;
+  width: 50px;
+}
+
+#workersDiv {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 0em;
+}
+
+.gridTitle {
+  padding: 10px 30px 20px 20px;
+}
+
+/* .workerText {
+  padding: 0px -5px 0px 0px;
+} */
+
+/* #transdiv {
+  background: #eee;
+  padding: 1em;
+  top: 0px;
+  left: 0px;
+  background-color: white;
+  height: 50%;
+  width: 100%;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+} */
+#smeltBar {
+  width: 0%;
+  height: 30px;
+  background-color: lightblue;
+  text-align: center;
+  line-height: 30px;
+  color: black;
+}
+
+#upgradeBar {
+  width: 0%;
+  height: 30px;
+  background-color: lightblue;
+  text-align: center;
+  line-height: 30px;
+  color: black;
+}
+
+h4 {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.environmentSpawn {
+  height: 200px;
+  width: auto;
+  -moz-window-dragging: false;
+  position: absolute;
+  pointer-events: none;
+}
+
+.resourceSpawn {
+  height: 50px;
+  width: auto;
+  -moz-window-dragging: false;
+  position: absolute;
+  z-index: 0;
+}
+.stoneSpawn {
+  height: 50px;
+  width: auto;
+  -moz-window-dragging: false;
+  position: absolute;
+  z-index: 0;
+}
+.silveroreSpawn {
+  height: 50px;
+  width: auto;
+  -moz-window-dragging: false;
+  position: absolute;
+  z-index: 0;
+}
+.goldoreSpawn {
+  height: 50px;
+  width: auto;
+  -moz-window-dragging: false;
+  position: absolute;
+  z-index: 0;
+}
+
+.powerupSpawn {
+  height: 50px;
+  width: auto;
+  -moz-window-dragging: false;
+  position: absolute;
+  z-index: 1;
+}
+
+.rows {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 35px 35px 35px;
+  text-align: right;
+}
+
+.styleBtn>button {
+  background-color: #BFD8D2;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  padding: 7px 7px;
+  transition: 0.3s;
+}
+
+.buildingTable {
+  width:100%;
+}
+
+td {
+  text-align: left;
+}
+
+/* TODO: refactor into one -----------------------------------------*/
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #ddd;
+}
+
+button.active {
+  background-color: #ccc;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+/* -------------------------------------------- */
+.tab1 {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tablinks1 {
+  background-color: inherit;
+  float: left;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab1 button:hover {
+  background-color: #ddd;
+}
+
+.tab1 button.active {
+  background-color: #ccc;
+}
+
+.tabcontent1 {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}

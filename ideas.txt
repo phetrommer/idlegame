@@ -1,0 +1,15 @@
+add ages? each age unlocks new upgrades and leaves behind the old upgrades so you have to unlock them before aging up.
+
+different areas that contain different things to do?
+
+gatherers gain food faster than farmers, but only limited amounts of gathered food can be discovered
+
+adults and kids - give different resources per second | adults 1.0 | kids 0.5
+
+happiness system from frostpunk? with laws and govt?
+
+display food, wood and stone as images which you can click to gather and upgrade each related tool such as pickaxe etc,
+
+MESS AROUND WITH ANIME.JS
+
+different zones you can travel to to get different types of materials etc

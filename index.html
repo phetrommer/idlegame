@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<!-- images from https://www.flaticon.com -->
+
+<head>
+  <link rel="stylesheet" type="text/css" href="interface.css" <meta   charset="utf-8">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script> -->
+</head>
+
+<body>
+
+  <!-- <div id="intro" style="display:block">
+
+  <button type="begingameBtn" onClick="begingame()" name="button">Create Settlement</button>
+
+</div> -->
+
+  <div id='main' class='main'>
+    <div class='grid-2'>
+      <h4>GATHERING</h4>
+      <button type="button" onClick="clickresource(food, 1)" name="foodBtn">Gather Food</button><br>
+      <button type="button" onClick="clickresource(wood, 1)" name="woodBtn">Cut Wood</button><br>
+      <button type="button" onClick="clickresource(stone, 1)" name="stoneBtn">Mine Stone</button><br>
+      <button type="button" onClick="ageUp(bronzeAge)" name="ageupBronzeBtn">Research Bronze Age</button>
+      <costtext> || cost: 500 food || requires: 5 tents, 1 live stock pen</costtext><br>
+    </div>
+
+    <div class='grid-3'>
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Resources')" id="defaultOpen">Resources</button>
+        <button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
+        <div id="Resources" class="tabcontent">
+          <h4>RESOURCES</h4>
+          <div class='nested'>
+            food:<span id="foodCount">0</span>
+            skin:<span id="skinCount">0</span>
+            wood:<span id="woodCount">0</span>
+            sap:<span id="sapCount">0</span>
+            stone:<span id="stoneCount">0</span>
+            coal:<span id="coalCount">0</span>
+            copper ore:<span id="copperoreCount">0</span>
+            copper ingot:<span id="copperingotCount">0</span>
+            silver ore:<span id="silveroreCount">0</span>
+            silver ingot:<span id="silveringotCount">0</span>
+            gold ore:<span id="goldoreCount">0</span>
+            gold ingot:<span id="goldingotCount">0</span>
+          </div>
+        </div>
+        <div id="Statistics" class="tabcontent">
+          <h4>STATISTICS</h4>
+          current population: <span id="currentpop">0</span><br>
+          children: <span id="childrenpop">0</span><br>
+          adults: <span id="adultspop">0</span><br>
+          engineers: <span id="engineerpop">0</span><br>
+          students: <span id="students">0</span><br>
+          maximum population: <span id="maxpop">0</span><br>
+        </div>
+      </div>
+    </div>
+
+    <div id="spawnbox" class="grid-1">
+      <!-- <div id="stoneImg" class="stoneImg"><img src=images/stone.png></div> -->
+    </div>
+
+    <!-- <div class='grid-6'>
+      <h4>TRAINING/SCHOOLING?</h4>
+      <button type="button" onClick="workerTrain()" name="workerBtn">Train Worker</button>
+      workers: <span id="workerCount">0</span>
+      <costtext> || cost: 10 food || </costtext>
+      <br>
+      enroll children to school:
+      <button type="button" onClick="studentDec()" name="studentBtn">
+        <</button> <span id="studentCount">0</span>
+          <button type="button" onClick="studentInc()" name="studentBtn">></button>
+          <br>
+    </div> -->
+
+    <div class='grid-4'>
+      <div id="workersDiv">
+        <h5 class="workerText">Avaliable Workers:<br>Child: <span id="childAvailableCount">0/0</span><br>Adult: <span id="adultAvailableCount">0/0</span><br>Engineer: <span id="engineerAvailableCount">0/0</span></h5>
+        <h4 class="gridTitle">EMPLOYEMENT</h4>
+      </div>
+      <div class="rows">
+        <div class="item1">
+          <h4>GATHERERS</h4>
+        </div>
+        <div class="item2">
+          <h4>WOODCUTTERS</h4>
+        </div>
+        <div class="item3">
+          <h4>MINERS</h4>
+        </div>
+        <div class="item4, styleBtn">
+          children: <button type="button" onClick="incORdec(gatherers, operator.decrease, child)" name="gathererChildBtn"><i class="fas fa-minus"></i></button>
+          <span id="gathererChildCount">0</span>
+          <button type="button" onClick="incORdec(gatherers, operator.increase, child)" name="gathererChildBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item5, styleBtn">
+          children: <button type="button" onClick="incORdec(woodcutters, operator.decrease, child)" name="woodcutterChildBtn"><i class="fas fa-minus"></i></button>
+          <span id="woodcutterChildCount">0</span>
+          <button type="button" onClick="incORdec(woodcutters, operator.increase, child)" name="woodcutterChildBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item6, styleBtn">
+          children: <button type="button" onClick="incORdec(miners, operator.decrease, child)" name="minersChildBtn"><i class="fas fa-minus"></i></button>
+          <span id="minerChildCount">0</span>
+          <button type="button" onClick="incORdec(miners, operator.increase, child)" name="minersChildBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item7, styleBtn">
+          adults: <button type="button" onClick="incORdec(gatherers, operator.decrease, adults)" name="gathererAdultBtn"><i class="fas fa-minus"></i></button>
+          <span id="gathererAdultCount">0</span>
+          <button type="button" onClick="incORdec(gatherers, operator.increase, adults)" name="gathererAdultBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item8, styleBtn">
+          adults: <button type="button" onClick="incORdec(woodcutters, operator.decrease, adults)" name="woodcutterAdultBtn"><i class="fas fa-minus"></i></button>
+          <span id="woodcutterAdultCount">0</span>
+          <button type="button" onClick="incORdec(woodcutters, operator.increase, adults)" name="woodcutterAdultBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item9, styleBtn">
+          adults: <button type="button" onClick="incORdec(miners, operator.decrease, adults)" name="minerAdultBtn"><i class="fas fa-minus"></i></button>
+          <span id="minerAdultCount">0</span>
+          <button type="button" onClick="incORdec(miners, operator.increase, adults)" name="minerAdultBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item10, styleBtn">
+          engineers: <button type="button" onClick="incORdec(gatherers, operator.decrease, engineer)" name="gathererengineerBtn"><i class="fas fa-minus"></i></button>
+          <span id="gathererengineerCount">0</span>
+          <button type="button" onClick="incORdec(gatherers, operator.increase, engineer)" name="gathererengineerBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item11, styleBtn">
+          engineers: <button type="button" onClick="incORdec(woodcutters, operator.decrease, engineer)" name="woodcutterengineerBtn"><i class="fas fa-minus"></i></button>
+          <span id="woodcutterengineerCount">0</span>
+          <button type="button" onClick="incORdec(woodcutters, operator.increase, engineer)" name="woodcutterengineerBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item12, styleBtn">
+          engineers: <button type="button" onClick="incORdec(miners, operator.decrease, engineer)" name="minerengineerBtn"><i class="fas fa-minus"></i></button>
+          <span id="minerengineerCount">0</span>
+          <button type="button" onClick="incORdec(miners, operator.increase, engineer)" name="minerengineerBtn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="item13">
+          <br>
+          <h4>SMELTERS</h4>
+        </div>
+        <div class="item14">
+          <br>
+          <h4>TEMP</h4>
+        </div>
+        <div class="item15">
+          <br>
+          <h4>TEMP</h4>
+        </div>
+        <div class="item16, styleBtn">
+          engineers: <button type="button" onClick="incORdec(smelter, operator.decrease, engineer)" name="smelterengineerBtn">
+            <i class="fas fa-minus"></i></button> <span id="smelterengineerCount">0</span>
+          <button type="button" onClick="incORdec(smelter, operator.increase, engineer)" name="smelterengineerBtn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class='grid-5'>
+      <div class="tab1">
+        <button class="tablinks1" onClick="openTab1(event, 'Buildings')" id="defaultOpen1">Buildings</button>
+        <button class="tablinks1" onClick="openTab1(event, 'Upgrades')">Upgrades</button>
+        <button class="tablinks1" onClick="openTab1(event, 'Policies')">Policies</button>
+        <div id="Buildings" class="tabcontent1">
+          <h4>BUILDINGS</h4>
+          <table class="buildingTable">
+            <tbody>
+              <td>
+                <button type="button" onClick="createBuilding(tent)" id="tentBtn">Buy Tent</button>
+                <span id="tentCount">0</span>
+              </td>
+              <td>
+                || cost: 2 skins, 2 wood || +2 pop
+              </td>
+            </tbody>
+            <tbody>
+              <td>
+                <button type="button" disabled="disabled" onClick="createBuilding(hut)" id="hutBtn">Buy Hut</button>
+                <span id="hutCount">0</span>
+              </td>
+              <td>
+                || cost: 20 wood, 10 stone || +5 pop
+              </td>
+            </tbody>
+            <tbody>
+              <td>
+                <button type="button" disabled="disabled" onClick="createBuilding(house)" id="houseBtn">Buy House</button>
+                <span id="houseCount">0</span>
+              </td>
+              <td>
+                || cost: 100 wood, 100 stone || +10 pop
+              </td>
+            </tbody>
+            <tbody>
+              <td>
+                <button type="button" disabled="disabled" onClick="createBuilding(furnace)" id="furnaceBtn">Buy Furnace</button>
+                <span id="furnaceCount">0</span>
+              </td>
+              <td>
+                || cost: 50 stone, 10 wood ||
+              </td>
+            </tbody>
+            <tbody>
+              <td>
+                <button type="button" onClick="createBuilding(livestockpen)" id="livestockpenBtn">Buy Livestock Pen</button>
+                <span id="livestockpenCount">0</span>
+              </td>
+              <td>
+                || cost: 150 wood, 50 stone ||
+              </td>
+            </tbody>
+            <tbody>
+              <td>
+                <button type="button" onClick="createBuilding(mill)" id="millBtn">Buy Mill</button>
+                <span id="millCount">0</span>
+              </td>
+              <td>
+                || cost: 200 wood, 30 stone ||
+              </td>
+            </tbody>
+            <tbody>
+              <td>
+                <button type="button" onClick="createBuilding(temp)" id="tempBtn">Buy temp</button>
+                <span id="tempCount">0</span>
+              </td>
+              <td>
+                || cost: 200 wood, 30 stone ||
+              </td>
+            </tbody>
+            <tbody>
+              <td>
+                <button type="button" onClick="createBuilding(temp)" id="tempBtn">Buy temp</button>
+                <span id="tempCount">0</span>
+              </td>
+              <td>
+                || cost: 200 wood, 30 stone ||
+              </td>
+            </tbody>
+          </table>
+
+        </div>
+        <div id="Upgrades" class="tabcontent1">
+          <h4>UPGRADES</h4>
+          <button type="button" onClick="upgrade(pickaxe1)" id="pickaxe1Btn">Improved Pickaxes I</button>
+          <button type="button" onClick="upgrade(axe1)" id="axe1Btn">Improved Axes I</button>
+          <button type="button" onClick="upgrade(farming1)" id="farming1Btn">Improved Farming I</button>
+          <button type="button" onClick="upgrade(clear1)" id="clear1Btn">Improved Clear I</button>
+          <br>
+          <br>
+          <div id="upgradeProgress">
+            <div id="upgradeBar">0%</div>
+          </div>
+        </div>
+        <div id="Policies" class="tabcontent1">
+          <h4>POLICIES</h4>
+          <button type="button" onClick="" id="">Child Labour</button>
+          <button type="button" onClick="" id="">somethingelse</button>
+        </div>
+      </div>
+    </div>
+
+    <div class='grid-7'>
+      <h4>SMELTING</h4>
+      coal in furnace: <span id="furanceCoalCount">0</span><button type="button" onClick="furnaceMaterials(coal, 1)" id="smeltCoalBtn">Deposit
+        Coal</button><br><br>
+      <button type="button" onClick="smelt(copperingot, 1)" id="copperBtn">Copper Ingot</button>
+      <button type="button" onClick="smelt(silveringot, 1)" id="silverBtn">Silver Ingot</button>
+      <br>
+      <br>
+      <div id="smeltProgress">
+        <div id="smeltBar">0%</div>
+      </div>
+    </div>
+
+    <div id="eventsContainer" class="grid-6">
+      <h4>EVENTS</h4>
+      <table id="logTable">
+        <tr id="log0">
+          <td id="logT"></td>
+          <td id="logL"></td>
+          <td id="logR"></td>
+        </tr>
+        <tr id="log1"></tr>
+        <tr id="log2"></tr>
+        <tr id="log3"></tr>
+        <tr id="log4"></tr>
+      </table>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
